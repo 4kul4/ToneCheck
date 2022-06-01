@@ -1,0 +1,47 @@
+@charset "windows-1251";
+body {
+   background-color:#abbad3
+}
+contacts {
+  color: #3a007a;
+  font-family: Brush Script MT, Brush Script Std, cursive;
+  font-weight: normal;
+}
+
+contacts_text {
+  color: #160033;
+  font-family: Brush Script MT, Brush Script Std, cursive;
+  font-weight: normal;
+}
+
+.sidebar-nav {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+p {
+    text-indent: 20px;
+}
+
+button {
+  text-decoration: none;
+  display: inline-block;
+  padding: 6px 20px;
+  margin: 10px 10px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 0 40px 40px #ac80dc inset, 0 0 0 0 #9f60c5;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  letter-spacing: 4px;
+  color: white;
+  transition: .15s ease-in-out;
+}
+button:hover {
+  box-shadow: 0 0 10px 0 #7914f5 inset, 0 0 10px 4px #8f1fd7;
+  color: #ab67dc;
+}

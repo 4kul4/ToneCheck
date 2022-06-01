@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="shortcut icon" href={% static 'img/favicon.ico' %} type="image/x-icon">
+</head>
+<body>
+    <contacts><h1>Добро пожаловать в приложение проверки тональности текстовых сообщений</h1></contacts>
+    {% if request.user.is_authenticated %}
+        <glow-button><a href="checkin/checker">Страница проверки</a></glow-button>
+    {% else %}
+        <glow-button><li class="last"><a href="/login">Страница проверки</a></li></glow-button>
+    {% endif %}<br>
+    <glow-button><a href="/contacts"> Связь </a></glow-button><br>
+    {% if request.user.is_authenticated %}
+        <glow-button><li class="last"> {{user.username}} | <a href="{% url 'logout' %}">Выйти</a></li></glow-button>
+    {% else %}
+        <glow-button><li class="last"><a href="{% url 'register' %}">Регистрация</a> | <a href="/accounts/log">Войти</a></li></glow-button>
+    {% endif %}
+</body>
+</html>

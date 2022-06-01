@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница проверки</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="shortcut icon" href={% static 'img/favicon.ico' %} type="image/x-icon">
+</head>
+<style>
+.Box {
+    margin-bottom:15px;
+        width:900px;
+        height: 130px;
+        background-color: #dac8ee;
+        position:relative;
+        border: 2px solid #3a007a;
+        border-radius: 10px;
+        box-shadow: 0 0 15px #280252;
+        padding:20px 40px;
+}
+
+.glow-button {
+  text-decoration: none;
+  display: inline-block;
+  padding: 6px 20px;
+  margin: 10px 10px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 0 40px 40px #ac80dc inset, 0 0 0 0 #9f60c5;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  letter-spacing: 4px;
+  color: white;
+  transition: .15s ease-in-out;
+}
+
+.glow-button:hover {
+  box-shadow: 0 0 10px 0 #7914f5 inset, 0 0 10px 4px #8f1fd7;
+  color: #ab67dc;
+}
+
+</style>
+<body>
+    <table width="100%" cellspacing="0" cellpadding="5">
+        <tr><td width="45%" valign="top">
+            <center><contacts><h1>Введите информацию указанную ниже</h1></contacts></center>
+            <form action="" method="post">
+                {% csrf_token %}
+                <p><label for="public_start">Начало публикаций</label>
+                {{ form.public_start }}
+                <input type="text" id="public_start" class="form-control" name="public_start" placeholder="Введите время отсчета"></p>
+                <p><label for="public_end">Конец публикаций</label>
+                {{ form.public_end }}
+                <input type="text" id="public_end" class="form-control" name="public_end" placeholder="Введите время конца"></p>
+                <p><label for="language">Язык публикации</label>
+                {{ form.language }}
+                <input type="text" id="language" class="form-control" name="language" placeholder="Язык публикации"></p>
+                <p><label for="page">Количество страниц в публикации</label>
+                {{ form.page }}
+                <input type="text" id="page" class="form-control" name="page" placeholder="Количество страниц"></p>
+                <p><input type="submit" name="send" value="Узнать" class="glow-button"></p>
+            </form>
+        </td>
+        <td valign="top">
+            <center><contacts><h1>Ответная информация</h1></contacts></center>
+                {% for info in all_info %}
+                <div class="Box">
+                    <a>Публикация за {{ context.publeshed_at.start }} - {{ context.publeshed_at.end }} <br>
+                    Язык: {{ context.language }}<br>
+                    Инфомация об авторе: {{ context.author }}<br>
+                    Информация о названии: {{ context.name }}<br>
+                    Источник: {{ context.link }} <br>
+                    Отчет по проверке тональности текстовых сообщений: {{ context.polarity }}</a>
+                </div>
+                {% endfor %}
+        </td></tr>
+    </table>
+</body>
+</html>
